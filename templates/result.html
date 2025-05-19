@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sınav Sonucu</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(109, 91, 255, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1200;
+        }
+        .modal {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(109, 91, 255, 0.18);
+            padding: 38px 32px 26px 32px;
+            max-width: 390px;
+            width: 90vw;
+            text-align: center;
+            position: relative;
+            animation: pop .32s cubic-bezier(.24,1.57,.64,1);
+        }
+        @keyframes pop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal h2 {
+            font-size: 1.5rem;
+            color: #463be5;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .modal .score-info {
+            font-size: 1.17rem;
+            color: #444b8a;
+            margin-bottom: 15px;
+        }
+        .modal .score-percent {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #6d5bff;
+            margin-bottom: 12px;
+        }
+        .modal .other-scores {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .modal .modal-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .modal .modal-btn {
+            background: linear-gradient(90deg, #6d5bff 0%, #463be5 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 0;
+            min-width: 100px;
+            font-size: 1.04rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(93, 83, 235, 0.13);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .modal .modal-btn:hover {
+            background: linear-gradient(90deg, #5246d8 0%, #6d5bff 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-bg">
+        <div class="modal">
+            <h2>Sınav Sonucu</h2>
+            <div class="score-info">
+                Skorunuz
+                <div class="score-percent">%{{ user_percent }}</div>
+                <div class="other-scores">
+                    {% if user_highest_percent is not none %}
+                        Kişisel en yüksek skorunuz: <strong>%{{ user_highest_percent }}</strong> <br>
+                    {% endif %}
+                    {% if all_time_high_percent > 0 %}
+                        Genel en yüksek skor: <strong>%{{ all_time_high_percent }}</strong>
+                    {% endif %}
+                </div>
+                <div style="margin-top: 10px; color: #8a8;">
+                    Toplam {{ total_questions }} sorudan {{ score }} doğru!
+                </div>
+            </div>
+            <div class="modal-btns">
+                <form action="{{ url_for('exam') }}" method="get" style="display:inline;">
+                    <button type="submit" class="modal-btn">Tekrar Çöz</button>
+                </form>
+                <form action="{{ url_for('home') }}" method="get" style="display:inline;">
+                    <button type="submit" class="modal-btn">Ana Sayfa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

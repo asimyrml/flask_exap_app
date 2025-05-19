@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sınav - Flask Sınav Uygulaması</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Sınav</h1>
+        <form action="{{ url_for('submit_exam') }}" method="post" class="exam-form">
+            {% for q in questions %}
+                <div class="question-block">
+                    <p class="question-title"><span>{{ loop.index }}.</span> {{ q.question }}</p>
+                    {% set q_idx = loop.index0 %}
+                    {% for opt in q.options %}
+                        <label class="option-label">
+                            <input type="radio" name="answer{{ q_idx }}" value="{{ opt }}" required>
+                            <span class="custom-radio"></span>
+                            {{ opt }}
+                        </label>
+                    {% endfor %}
+                    <input type="hidden" name="question" value="{{ q.answer }}">
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-exam">Sınavı Bitir</button>
+        </form>
+
+    </div>
+</body>
+</html>
