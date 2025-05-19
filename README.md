@@ -32,6 +32,7 @@ Proje PythonAnywhere üzerinde yayınlanmaya hazırdır ve bütün fonksiyonlar�
 ---
 
 ## Proje Mimarisi
+```
 project/
 │
 ├── app.py
@@ -47,7 +48,7 @@ project/
 │ └── styles.css
 │
 └── README.md
-
+```
 ---
 
 
