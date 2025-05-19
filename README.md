@@ -56,8 +56,8 @@ project/
 
 1. **Depoyu klonlayın**
     ```bash
-    git clone https://github.com/yourusername/flask-sinav-proje.git
-    cd flask-sinav-proje
+    git clone https://github.com/asimyrml/flask_exap_app.git
+    cd flask_exap_app
     ```
 
 2. **(Opsiyonel) Sanal ortam oluşturun**
