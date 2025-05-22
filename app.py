@@ -3,11 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 import csv
 import random
 
-import os
-db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'exam_app.db'))
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///exam_app.db'
 db = SQLAlchemy(app)
 
 
